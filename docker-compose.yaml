@@ -1,1 +1,14 @@
-version: '2'
+backend:
+  environment:
+    - spring.data.mongodb.host=storage
+  image: 'virtum/auctionfinder:latest'
+  ports:
+    - '81:8080'
+frontend:
+  image: 'virtum/auctionfinderui:latest'
+  ports:
+    - '80:80'
+storage:
+  image: 'mongo:3.2'
+  ports:
+- '27017:27017'
