@@ -17,7 +17,6 @@ import 'rxjs/add/operator/map';
 export class AppComponent {
   private response = '';
   private values = '';
-  private url = 'http://localhost:8080/find';
 
   constructor(private http: Http) { }
 
@@ -28,7 +27,6 @@ export class AppComponent {
   onButtonClicked(event) {
     this.sendItemName(this.values).subscribe(res => {
       this.response = 'Response: ' + res;
-      console.log(res);
       this.values = '';
     }
     );
@@ -38,11 +36,10 @@ export class AppComponent {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.url, { name }, options)
+    return this.http.post('http://localhost:8080/find', { name }, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
-
 
   private extractData(res: Response) {
     let body = res.json();
