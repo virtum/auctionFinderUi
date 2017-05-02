@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FinderComponent } from './auctionfinder/finder.component';
+import { FinderComponent } from './auctionFinder/finder.component';
 
 @NgModule({
   declarations: [
