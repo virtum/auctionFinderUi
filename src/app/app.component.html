@@ -1,7 +1,15 @@
-<h1>
-  Szukaj:
-  <input (keyup)="onKey($event)" [value]="values">
+<div>
+  <nav>
+    <div>
+      <ul>
+        <li><a [routerLink]="['/login']">Login</a></li>
+        <li><a [routerLink]="['/find']">Find item</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <button (click)=" onButtonClicked() ">Wyślij</button>
-  <p>{{response}}</p>
-</h1>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
