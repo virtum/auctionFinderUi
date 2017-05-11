@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { AuthGuard } from '../guard/authGuard.service';
 
 @Component({
     templateUrl: './finder.component.html'
@@ -16,7 +17,7 @@ export class FinderComponent {
     private response = '';
     private values = '';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private guard: AuthGuard, private router: Router) { }
 
     onKey(event: any) {
         this.values = event.target.value;
@@ -31,8 +32,8 @@ export class FinderComponent {
     }
 
     sendItemName(itemName): Observable<String> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
 
         return this.http.post('http://localhost:8080/find', { itemName }, options)
             .map(this.extractData)
@@ -40,7 +41,7 @@ export class FinderComponent {
     }
 
     private extractData(res: Response) {
-        let body = res.json();
+        const body = res.json();
         console.log('Response: ', body.response);
 
         return body.response || {};
@@ -57,6 +58,11 @@ export class FinderComponent {
         }
         console.error(errMsg);
         return Observable.throw(errMsg);
+    }
+
+    logout() {
+        this.guard.isLogged = false;
+        this.router.navigate(['/login']);
     }
 
 }

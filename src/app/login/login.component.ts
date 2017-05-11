@@ -16,7 +16,7 @@ import { AuthGuard } from '../guard/authGuard.service';
 @Injectable()
 export class LoginComponent {
 
-    constructor(private fb: FacebookService, private http: Http, private guard : AuthGuard) {
+    constructor(private fb: FacebookService, private http: Http, private guard: AuthGuard) {
         console.log('login');
         fb.init({
             appId: '1722165054742491',
@@ -49,9 +49,9 @@ export class LoginComponent {
 
     private extractData(res: Response) {
         let body = res.json();
-        console.log('Response: ', body.response);
+        console.log('Response: ', body.logged);
 
-        return body.response || {};
+        return body.logged || {};
     }
 
     private handleError(error: Response | any) {
