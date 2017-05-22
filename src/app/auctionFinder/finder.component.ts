@@ -25,26 +25,23 @@ export class FinderComponent {
 
     onButtonClicked(event) {
         this.sendItemName(this.values).subscribe(res => {
+            console.log(this.values);
             this.response = 'Response: ' + res;
             this.values = '';
         }
         );
     }
 
-    sendItemName(itemName): Observable<String> {
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers: headers });
+    sendItemName(item): Observable<String> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:8080/find', { itemName }, options)
-            .map(this.extractData)
+        return this.http.post('http://localhost:8080/rest/find', { item }, options)
+            .map(res => {
+                let body = res.json();
+                return body.response || {};
+            })
             .catch(this.handleError);
-    }
-
-    private extractData(res: Response) {
-        const body = res.json();
-        console.log('Response: ', body.response);
-
-        return body.response || {};
     }
 
     private handleError(error: Response | any) {
@@ -61,8 +58,23 @@ export class FinderComponent {
     }
 
     logout() {
-        this.guard.isLogged = false;
-        this.router.navigate(['/login']);
+        this.logoutUser().subscribe(res => {
+            this.guard.isLogged = false;
+            this.router.navigate(['/login']);
+        }
+        );
+    }
+
+    private logoutUser() {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this.http.get('http://localhost:8080/rest/logout', options)
+            .map(res => {
+                let body = res.json();
+                return body || {};
+            })
+            .catch(this.handleError);
     }
 
 }
