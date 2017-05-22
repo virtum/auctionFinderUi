@@ -32,11 +32,11 @@ export class FinderComponent {
         );
     }
 
-    sendItemName(item): Observable<String> {
+    sendItemName(itemName): Observable<String> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:8080/rest/find', { item }, options)
+        return this.http.post('http://localhost:8080/rest/find', { itemName }, options)
             .map(res => {
                 let body = res.json();
                 return body.response || {};
