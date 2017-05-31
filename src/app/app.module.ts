@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FinderComponent } from './auctionFinder/finder.component';
 import { AuthGuard } from './guard/authGuard.service';
+import { AlertModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthGuard } from './guard/authGuard.service';
     FormsModule,
     HttpModule,
     FacebookModule.forRoot(),
+    AlertModule.forRoot(),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'find', component: FinderComponent, canActivate: [AuthGuard] },
