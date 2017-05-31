@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
 
     constructor(private router: Router, private http: Http) {
         this.isUserLogged().subscribe(res => {
-            this.isLogged = res.response;
+            this.isLogged = res.logged;
         }
         );
     }
@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
     private isUserLogged() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
-        return this.http.get('http://localhost:8080/auth', options)
+        return this.http.get('http://localhost:8080/isLogged', options)
             .map(res => {
                 let body = res.json();
                 return body || {};
