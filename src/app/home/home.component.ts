@@ -34,7 +34,7 @@ export class HomeComponent {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:8080/rest/find', { itemName }, options)
+        return this.http.post('http://localhost:8080/find', { itemName }, options)
             .map(res => {
                 let body = res.json();
                 return body.response || {};
