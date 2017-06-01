@@ -13,11 +13,11 @@
       <div class="modal-body">
         Adres e-mail:
         <p>
-          <input>
+          <input (keyup)="onEmailKey($event)" [value]="email">
         </p>
         Przedmiot:
         <p>
-          <input (keyup)="onKey($event)" [value]="values">
+          <input (keyup)="onItemKey($event)" [value]="item">
         </p>
 
         <button class="btn btn-primary" (click)=" onButtonClicked() ">Wyślij</button>

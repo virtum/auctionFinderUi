@@ -5,6 +5,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { FindRequestModel } from '../home/findRequestModel';
 
 @Component({
     templateUrl: './home.component.html'
@@ -13,28 +14,41 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HomeComponent {
     private response = '';
-    private values = '';
+    private item = '';
+    private email = '';
+    private requestModel: FindRequestModel;
 
     constructor(private http: Http) { }
 
-    onKey(event: any) {
-        this.values = event.target.value;
+    onItemKey(event: any) {
+        this.item = event.target.value;
+    }
+
+    onEmailKey(event: any) {
+        this.email = event.target.value;
     }
 
     onButtonClicked(event) {
-        this.sendItemName(this.values).subscribe(res => {
-            console.log(this.values);
+        this.requestModel = {
+            item: this.item,
+            email: this.email
+        };
+
+        this.sendItemName(this.requestModel).subscribe(res => {
+            console.log(this.item);
             this.response = 'Response: ' + res;
-            this.values = '';
+
+            this.item = '';
+            this.email = '';
         }
         );
     }
 
-    sendItemName(itemName): Observable<String> {
+    sendItemName(requestData): Observable<String> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:8080/find', { itemName }, options)
+        return this.http.post('http://localhost:8080/find', requestData, options)
             .map(res => {
                 let body = res.json();
                 return body.response || {};
