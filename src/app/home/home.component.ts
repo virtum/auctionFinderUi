@@ -13,9 +13,9 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Injectable()
 export class HomeComponent {
-    private response = '';
-    private item = '';
-    private email = '';
+    private response: String = '';
+    private item: String = '';
+    private email: String = '';
     private requestModel: FindRequestModel;
 
     @ViewChild('autoShownRequestModal') public autoShownRequestModal: ModalDirective;
@@ -36,7 +36,7 @@ export class HomeComponent {
         this.isRequestModalShown = false;
     }
 
-     public showResponseModal(): void {
+    public showResponseModal(): void {
         this.isResponseModalShown = true;
     }
 
@@ -66,11 +66,11 @@ export class HomeComponent {
 
         this.sendItemName(this.requestModel).subscribe(res => {
             console.log(this.item);
-            this.response = 'Response: ' + res;
+            this.response = res;
 
             this.item = '';
             this.email = '';
-            
+
             this.showResponseModal();
         }
         );
