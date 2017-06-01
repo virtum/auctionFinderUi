@@ -8,7 +8,8 @@ import { FindRequestModel } from '../home/findRequestModel';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
-    templateUrl: './home.component.html'
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 
 @Injectable()
