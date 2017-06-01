@@ -27,16 +27,8 @@
   </div>
 </div>
 
-<div *ngIf="isResponseModalShown" [config]="{ show: true }" (onHidden)="onResponseHidden()" bsModal #autoShownResponseModal="bs-modal"
-  class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideResponseModal()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        <h4>{{response}}</h4>
-      </div>
-    </div>
-  </div>
+<div *ngIf="isResponseBack">
+  <alert type="success" dismissible="true">
+    <strong>{{response}}</strong>
+  </alert>
 </div>

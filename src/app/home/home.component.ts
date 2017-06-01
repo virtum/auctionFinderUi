@@ -18,12 +18,14 @@ export class HomeComponent {
     private item: String = '';
     private email: String = '';
     private requestModel: FindRequestModel;
+    private isResponseBack: boolean = false;
 
     @ViewChild('autoShownRequestModal') public autoShownRequestModal: ModalDirective;
-    @ViewChild('autoShownResponseModal') public autoShownResponseModal: ModalDirective;
 
     public isRequestModalShown: boolean = false;
-    public isResponseModalShown: boolean = false;
+
+    public constructor(private http: Http, ) {
+    }
 
     public showRequestModal(): void {
         this.isRequestModalShown = true;
@@ -36,20 +38,6 @@ export class HomeComponent {
     public onRequestHidden(): void {
         this.isRequestModalShown = false;
     }
-
-    public showResponseModal(): void {
-        this.isResponseModalShown = true;
-    }
-
-    public hideResponseModal(): void {
-        this.autoShownResponseModal.hide();
-    }
-
-    public onResponseHidden(): void {
-        this.isResponseModalShown = false;
-    }
-
-    constructor(private http: Http) { }
 
     onItemKey(event: any) {
         this.item = event.target.value;
@@ -69,12 +57,12 @@ export class HomeComponent {
             console.log(this.item);
             this.response = res;
 
-            this.item = '';
-            this.email = '';
-
-            this.showResponseModal();
+            this.isResponseBack = true;
         }
         );
+        
+        this.item = '';
+        this.email = '';
         this.hideRequestModal();
     }
 
@@ -100,6 +88,7 @@ export class HomeComponent {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
+        // TODO add message showing failure on page
         return Observable.throw(errMsg);
     }
 

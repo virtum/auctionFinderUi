@@ -9,7 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guard/authGuard.service';
 import { AccountComponent } from "./account/account.component"
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ModalModule } from 'ngx-bootstrap';
     HttpModule,
     FacebookModule.forRoot(),
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
