@@ -1,9 +1,34 @@
- Szukaj:
-<input (keyup)="onKey($event)" [value]="values">
+<button type="button" class="btn btn-primary" (click)="staticModal.show()">Znajdź przedmiot</button>
 
-<button (click)=" onButtonClicked() ">Wyślij</button>
-<p>{{response}}</p>
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Znajdź przedmiot:</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="modal-body">
+        Adres e-mail:
+        <p>
+          <input>
+        </p>
+        Przedmiot:
+        <p>
+          <input (keyup)="onKey($event)" [value]="values">
+        </p>
 
-<button (click)="logout()" class="btn btn-primary">
+        <button class="btn btn-primary" (click)=" onButtonClicked() ">Wyślij</button>
+        <p>{{response}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button (click)="logout()" class="btn btn-primary">
     Logout
-</button>
+  </button>
+</div>
