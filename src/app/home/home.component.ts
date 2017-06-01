@@ -19,10 +19,10 @@ export class HomeComponent {
     private requestModel: FindRequestModel;
 
     @ViewChild('autoShownRequestModal') public autoShownRequestModal: ModalDirective;
-    public isModalShown: boolean = false;
+    public isRequestModalShown: boolean = false;
 
     public showRequestModal(): void {
-        this.isModalShown = true;
+        this.isRequestModalShown = true;
     }
 
     public hideRequestModal(): void {
@@ -30,7 +30,7 @@ export class HomeComponent {
     }
 
     public onRequestHidden(): void {
-        this.isModalShown = false;
+        this.isRequestModalShown = false;
     }
 
     constructor(private http: Http) { }
