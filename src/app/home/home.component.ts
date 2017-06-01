@@ -19,7 +19,10 @@ export class HomeComponent {
     private requestModel: FindRequestModel;
 
     @ViewChild('autoShownRequestModal') public autoShownRequestModal: ModalDirective;
+    @ViewChild('autoShownResponseModal') public autoShownResponseModal: ModalDirective;
+
     public isRequestModalShown: boolean = false;
+    public isResponseModalShown: boolean = false;
 
     public showRequestModal(): void {
         this.isRequestModalShown = true;
@@ -31,6 +34,18 @@ export class HomeComponent {
 
     public onRequestHidden(): void {
         this.isRequestModalShown = false;
+    }
+
+     public showResponseModal(): void {
+        this.isResponseModalShown = true;
+    }
+
+    public hideResponseModal(): void {
+        this.autoShownResponseModal.hide();
+    }
+
+    public onResponseHidden(): void {
+        this.isResponseModalShown = false;
     }
 
     constructor(private http: Http) { }
@@ -56,6 +71,7 @@ export class HomeComponent {
             this.item = '';
             this.email = '';
             this.hideRequestModal();
+            this.showResponseModal();
         }
         );
     }
