@@ -70,10 +70,11 @@ export class HomeComponent {
 
             this.item = '';
             this.email = '';
-            this.hideRequestModal();
+            
             this.showResponseModal();
         }
         );
+        this.hideRequestModal();
     }
 
     sendItemName(requestData): Observable<String> {
