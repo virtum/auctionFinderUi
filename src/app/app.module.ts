@@ -9,12 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { FinderComponent } from './auctionFinder/finder.component';
 import { AuthGuard } from './guard/authGuard.service';
 import { AlertModule } from 'ngx-bootstrap';
+import { AccountComponent } from "./account/account.component"
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FinderComponent
+    FinderComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { AlertModule } from 'ngx-bootstrap';
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'find', component: FinderComponent, canActivate: [AuthGuard] },
+      { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login', pathMatch: 'full' }
     ])
