@@ -26,3 +26,33 @@
     </div>
   </div>
 </div>
+
+
+
+<button type="button" class="btn btn-primary" (click)="showRequestModal()">Znajdź przedmiot</button>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onRequestHidden()" bsModal #autoShownRequestModal="bs-modal" class="modal fade"
+  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Znajdź przedmiot:</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideRequestModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          Adres e-mail:
+          <p>
+            <input (keyup)="onEmailKey($event)" [value]="email">
+          </p>
+          Przedmiot:
+          <p>
+            <input (keyup)="onItemKey($event)" [value]="item">
+          </p>
+
+          <button class="btn btn-primary" (click)=" onButtonClicked() ">Wyślij</button>
+        </div>
+      </div>
+    </div>
+  </div>

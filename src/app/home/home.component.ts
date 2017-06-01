@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { Injectable } from '@angular/core';
+import { Component, ViewChild, Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FindRequestModel } from '../home/findRequestModel';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
     templateUrl: './home.component.html'
@@ -17,6 +17,21 @@ export class HomeComponent {
     private item = '';
     private email = '';
     private requestModel: FindRequestModel;
+
+    @ViewChild('autoShownRequestModal') public autoShownRequestModal: ModalDirective;
+    public isModalShown: boolean = false;
+
+    public showRequestModal(): void {
+        this.isModalShown = true;
+    }
+
+    public hideRequestModal(): void {
+        this.autoShownRequestModal.hide();
+    }
+
+    public onRequestHidden(): void {
+        this.isModalShown = false;
+    }
 
     constructor(private http: Http) { }
 
@@ -40,6 +55,7 @@ export class HomeComponent {
 
             this.item = '';
             this.email = '';
+            this.hideRequestModal();
         }
         );
     }
