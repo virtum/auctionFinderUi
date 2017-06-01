@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FacebookModule } from 'ngx-facebook';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FinderComponent } from './auctionFinder/finder.component';
+import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guard/authGuard.service';
 import { AccountComponent } from "./account/account.component"
 import { ModalModule } from 'ngx-bootstrap';
@@ -15,7 +15,7 @@ import { ModalModule } from 'ngx-bootstrap';
   declarations: [
     AppComponent,
     LoginComponent,
-    FinderComponent,
+    HomeComponent,
     AccountComponent
   ],
   imports: [
@@ -26,10 +26,10 @@ import { ModalModule } from 'ngx-bootstrap';
     ModalModule.forRoot(),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
-      { path: 'find', component: FinderComponent, canActivate: [AuthGuard] },
+      { path: 'home', component: HomeComponent },
       { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: '**', redirectTo: 'login', pathMatch: 'full' }
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
   providers: [AuthGuard],

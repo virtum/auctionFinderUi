@@ -9,11 +9,11 @@ import 'rxjs/add/operator/map';
 import { AuthGuard } from '../guard/authGuard.service';
 
 @Component({
-    templateUrl: './finder.component.html'
+    templateUrl: './home.component.html'
 })
 
 @Injectable()
-export class FinderComponent {
+export class HomeComponent {
     private response = '';
     private values = '';
 
