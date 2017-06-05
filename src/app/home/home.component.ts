@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { FindRequestModel } from '../home/findRequestModel';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import 'rxjs/add/observable/throw';
 
 @Component({
     templateUrl: './home.component.html',
@@ -19,7 +20,6 @@ export class HomeComponent {
     private item: String = '';
     private email: String = '';
     private requestModel: FindRequestModel;
-    private isResponseBack: boolean = false;
 
     @ViewChild('autoShownRequestModal') public autoShownRequestModal: ModalDirective;
 
@@ -30,23 +30,11 @@ export class HomeComponent {
     }
 
     showSuccess() {
-        this.toastr.success('You are awesome!', 'Success!');
+        this.toastr.success('Subskrypcja została stworzona!', 'Sukces!');
     }
 
     showError() {
-        this.toastr.error('This is not good!', 'Oops!');
-    }
-
-    showWarning() {
-        this.toastr.warning('You are being warned.', 'Alert!');
-    }
-
-    showInfo() {
-        this.toastr.info('Just some information for you.');
-    }
-
-    showCustom() {
-        this.toastr.custom('<span style="color: red">Message in red.</span>', null, { enableHTML: true });
+        this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!');
     }
 
     public showRequestModal(): void {
@@ -78,17 +66,15 @@ export class HomeComponent {
         this.sendItemName(this.requestModel).subscribe(res => {
             console.log(this.item);
             this.response = res;
-
-            this.isResponseBack = true;
-        }
-        );
+            this.showSuccess();
+        });
 
         this.item = '';
         this.email = '';
         this.hideRequestModal();
     }
 
-    sendItemName(requestData): Observable<String> {
+    private sendItemName(requestData): Observable<String> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
@@ -97,21 +83,10 @@ export class HomeComponent {
                 let body = res.json();
                 return body.response || {};
             })
-            .catch(this.handleError);
-    }
-
-    private handleError(error: Response | any) {
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        // TODO add message showing failure on page
-        return Observable.throw(errMsg);
+            .catch(err => {
+                this.showError();
+                return Observable.throw(err);
+            });
     }
 
 }
