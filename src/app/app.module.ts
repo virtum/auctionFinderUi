@@ -10,8 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guard/authGuard.service';
 import { AccountComponent } from "./account/account.component"
 import { ModalModule } from 'ngx-bootstrap/modal';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    LocalStorageModule.withConfig({ storageType: 'localStorage' }),
     FacebookModule.forRoot(),
     ModalModule.forRoot(),
     ToastModule.forRoot(),
@@ -36,7 +38,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

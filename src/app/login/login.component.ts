@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 import { AuthGuard } from '../guard/authGuard.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
     templateUrl: './login.component.html',
@@ -18,7 +19,8 @@ import { AuthGuard } from '../guard/authGuard.service';
 export class LoginComponent implements OnInit {
     private returnUrl: string;
 
-    constructor(private fb: FacebookService, private http: Http, private guard: AuthGuard, private router: Router, private route: ActivatedRoute) {
+    constructor(private fb: FacebookService, private http: Http, private guard: AuthGuard, private router: Router,
+        private route: ActivatedRoute, private localStorageService: LocalStorageService) {
         fb.init({
             appId: '1722165054742491',
             xfbml: true,
@@ -29,13 +31,15 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigateByUrl(this.returnUrl);
-
+        console.log(this.localStorageService.get('isLogged'));
+        console.log(this.returnUrl);
         //console.log(this.returnUrl);
-        // if (this.returnUrl !== '/') {
-        //     console.log('if');
-        //     this.router.navigateByUrl(this.returnUrl);
-        // }
+        if ((this.localStorageService.get('isLogged'))) {
+            console.log('if');
+            this.router.navigate([this.returnUrl]);
+            //this.router.navigateByUrl(this.returnUrl);
+            console.log('kurwa');
+        }
     }
 
     login() {

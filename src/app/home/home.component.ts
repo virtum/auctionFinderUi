@@ -8,6 +8,7 @@ import { FindRequestModel } from '../home/findRequestModel';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import 'rxjs/add/observable/throw';
+import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
     templateUrl: './home.component.html',
@@ -25,16 +26,26 @@ export class HomeComponent {
 
     public isRequestModalShown: boolean = false;
 
-    public constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    name: any;
+    user: any;
+    valuFromLocalStorage: any;
+
+    public constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef,
+        private localStorageService: LocalStorageService) {
+        this.name = 'Angular-2-Local-Storage-Demo';
+        this.localStorageService.add('a', this.name);
+        //console.log(this.localStorageService.get('a'));
+        this.valuFromLocalStorage = this.localStorageService.get('a');
+        //console.log(this.localStorageService.get('a'));
         this.toastr.setRootViewContainerRef(vcr);
     }
 
     showSuccess() {
-        this.toastr.success('Subskrypcja została stworzona!', 'Sukces!',  {toastLife: 4000, showCloseButton: true});
+        this.toastr.success('Subskrypcja została stworzona!', 'Sukces!', { toastLife: 4000, showCloseButton: true });
     }
 
     showError() {
-        this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!',  {toastLife: 4000, showCloseButton: true});
+        this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!', { toastLife: 4000, showCloseButton: true });
     }
 
     public showRequestModal(): void {
