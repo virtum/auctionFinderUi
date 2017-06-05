@@ -1,16 +1,15 @@
-<div>
-  <nav>
-    <div>
-      <ul>
-        <li><a [routerLink]="['/login']">Login</a></li>
-        <li><a [routerLink]="['/home']">Find item</a></li>
-        <li><a [routerLink]="['/account']">Account</a></li>
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-faded rounded navbar-toggleable">
+
+    <div class="collapse navbar-collapse" [ngClass]="{'show': isMenuExpanded}" id="containerNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/login']">Login</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/home']">Find item</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/account']">Account</a></li>
       </ul>
     </div>
   </nav>
-
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-
+  <template ngbModalContainer></template>
 </div>
+<br/>
+<router-outlet></router-outlet>
