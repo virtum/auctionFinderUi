@@ -30,11 +30,11 @@ export class HomeComponent {
     }
 
     showSuccess() {
-        this.toastr.success('Subskrypcja została stworzona!', 'Sukces!');
+        this.toastr.success('Subskrypcja została stworzona!', 'Sukces!',  {toastLife: 4000, showCloseButton: true});
     }
 
     showError() {
-        this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!');
+        this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!',  {toastLife: 4000, showCloseButton: true});
     }
 
     public showRequestModal(): void {
