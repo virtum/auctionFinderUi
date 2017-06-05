@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -14,15 +15,20 @@ import { AuthGuard } from '../guard/authGuard.service';
 })
 
 @Injectable()
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+    private returnUrl: string;
 
-    constructor(private fb: FacebookService, private http: Http, private guard: AuthGuard) {
+    constructor(private fb: FacebookService, private http: Http, private guard: AuthGuard, private router: Router, private route: ActivatedRoute) {
         fb.init({
             appId: '1722165054742491',
             xfbml: true,
             version: 'v2.8'
         });
+    }
 
+    ngOnInit() {
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
@@ -31,6 +37,7 @@ export class LoginComponent {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.guard.isLogged = <any>res;
+                    this.router.navigateByUrl(this.returnUrl);
                 }
                 );
             })
