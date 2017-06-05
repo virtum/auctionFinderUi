@@ -64,7 +64,6 @@ export class HomeComponent {
         };
 
         this.sendItemName(this.requestModel).subscribe(res => {
-            console.log(this.item);
             this.response = res;
             this.showSuccess();
         });

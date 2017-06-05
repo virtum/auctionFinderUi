@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guard/authGuard.service';
 import { AccountComponent } from "./account/account.component"
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { AlertModule } from 'ngx-bootstrap/alert';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
@@ -28,7 +27,6 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     HttpModule,
     FacebookModule.forRoot(),
     ModalModule.forRoot(),
-    AlertModule.forRoot(),
     ToastModule.forRoot(),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
