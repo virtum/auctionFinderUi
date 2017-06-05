@@ -1,4 +1,4 @@
-import { Component, ViewChild, Injectable } from '@angular/core';
+import { Component, ViewChild, Injectable, ViewContainerRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FindRequestModel } from '../home/findRequestModel';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     templateUrl: './home.component.html',
@@ -24,7 +25,28 @@ export class HomeComponent {
 
     public isRequestModalShown: boolean = false;
 
-    public constructor(private http: Http, ) {
+    public constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vcr);
+    }
+
+    showSuccess() {
+        this.toastr.success('You are awesome!', 'Success!');
+    }
+
+    showError() {
+        this.toastr.error('This is not good!', 'Oops!');
+    }
+
+    showWarning() {
+        this.toastr.warning('You are being warned.', 'Alert!');
+    }
+
+    showInfo() {
+        this.toastr.info('Just some information for you.');
+    }
+
+    showCustom() {
+        this.toastr.custom('<span style="color: red">Message in red.</span>', null, { enableHTML: true });
     }
 
     public showRequestModal(): void {
@@ -60,7 +82,7 @@ export class HomeComponent {
             this.isResponseBack = true;
         }
         );
-        
+
         this.item = '';
         this.email = '';
         this.hideRequestModal();

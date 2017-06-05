@@ -11,6 +11,8 @@ import { AuthGuard } from './guard/authGuard.service';
 import { AccountComponent } from "./account/account.component"
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     FacebookModule.forRoot(),
     ModalModule.forRoot(),
     AlertModule.forRoot(),
+    ToastModule.forRoot(),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
