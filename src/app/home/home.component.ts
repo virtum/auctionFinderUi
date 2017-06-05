@@ -30,6 +30,7 @@ export class HomeComponent {
     user: any;
     valuFromLocalStorage: any;
 
+    //https://stackoverflow.com/questions/42603100/installing-angular2-localstorage-in-webstorm-gives-error-regarding-typings-inst
     public constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef,
         private localStorageService: LocalStorageService) {
         this.name = 'Angular-2-Local-Storage-Demo';
