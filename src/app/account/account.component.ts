@@ -18,7 +18,6 @@ export class AccountComponent implements OnInit {
 
     ngOnInit() {
         this.getUserSubscriptions().subscribe(res => {
-            console.log('account data', res.accountData);
             this.accountData = res.accountData;
         });
     }

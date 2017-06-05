@@ -12,7 +12,9 @@ export class AuthGuard implements CanActivate {
     public isLogged: boolean = false;
 
     constructor(private router: Router, private http: Http) {
+        console.log('ctor');
         this.isUserLogged().subscribe(res => {
+            console.log('response');
             this.isLogged = res.logged;
         }
         );
@@ -23,9 +25,12 @@ export class AuthGuard implements CanActivate {
     }
 
     checkLoggedIn(returnUrl): boolean {
+        console.log('checkLoggedIn start');
+        console.log(this.isLogged);
         if (this.isLogged) {
             return true;
         }
+        console.log('checkLoggedIn stop');
         this.router.navigate(['/login'], { queryParams: { returnUrl: returnUrl } });
         return false;
     }

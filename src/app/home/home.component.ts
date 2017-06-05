@@ -58,7 +58,6 @@ export class HomeComponent {
     }
 
     onButtonClicked(event) {
-        console.log('x');
         this.requestModel = {
             item: this.item,
             email: this.email
