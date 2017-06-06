@@ -9,15 +9,12 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    // public isLogged: boolean = false;
 
     constructor(private router: Router, private http: Http, private localStorageService: LocalStorageService) {
-        // this.isUserLogged().subscribe(res => {
-        //     this.isLogged = res.logged;
-        //     this.localStorageService.set('isLogged', this.isLogged);
-        //     console.log('isLogged from observable: ', this.localStorageService.get('isLogged'));
-        // }
-        // );
+        this.isUserLogged().subscribe(res => {
+            this.localStorageService.set('isLogged', res.logged);
+        }
+        );
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

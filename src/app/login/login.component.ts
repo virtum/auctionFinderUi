@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
-import { AuthGuard } from '../guard/authGuard.service';
 import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
@@ -19,7 +17,7 @@ import { LocalStorageService } from 'angular-2-local-storage';
 export class LoginComponent implements OnInit {
     private returnUrl: string;
 
-    constructor(private fb: FacebookService, private http: Http, private guard: AuthGuard, private router: Router,
+    constructor(private fb: FacebookService, private http: Http, private router: Router,
         private route: ActivatedRoute, private localStorageService: LocalStorageService) {
         fb.init({
             appId: '1722165054742491',
@@ -37,7 +35,6 @@ export class LoginComponent implements OnInit {
             .then((res: LoginResponse) => {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
-                    //this.guard.isLogged = <any>res;
                     this.localStorageService.set('isLogged', true);
                     this.router.navigateByUrl(this.returnUrl);
                 }

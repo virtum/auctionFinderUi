@@ -15,7 +15,7 @@ import { LocalStorageService } from 'angular-2-local-storage';
 export class AccountComponent implements OnInit {
     private accountData: String;
 
-    constructor(private http: Http, private guard: AuthGuard, private router: Router, private localStorageService: LocalStorageService) { }
+    constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService) { }
 
     ngOnInit() {
         this.getUserSubscriptions().subscribe(res => {
@@ -37,7 +37,6 @@ export class AccountComponent implements OnInit {
 
     logout() {
         this.logoutUser().subscribe(res => {
-            //this.guard.isLogged = false;
             this.localStorageService.set('isLogged', false);
             this.router.navigate(['/home']);
         }
