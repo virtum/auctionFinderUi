@@ -9,15 +9,15 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    public isLogged: boolean = false;
+    // public isLogged: boolean = false;
 
     constructor(private router: Router, private http: Http, private localStorageService: LocalStorageService) {
-        this.isUserLogged().subscribe(res => {
-            this.isLogged = res.logged;
-            this.localStorageService.set('isLogged', this.isLogged);
-            console.log('isLogged from observable: ', this.localStorageService.get('isLogged'));
-        }
-        );
+        // this.isUserLogged().subscribe(res => {
+        //     this.isLogged = res.logged;
+        //     this.localStorageService.set('isLogged', this.isLogged);
+        //     console.log('isLogged from observable: ', this.localStorageService.get('isLogged'));
+        // }
+        // );
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -25,12 +25,9 @@ export class AuthGuard implements CanActivate {
     }
 
     checkLoggedIn(returnUrl): boolean {
-        console.log('isLogged from checkLoggedIn: ', this.localStorageService.get('isLogged'));
         if (this.localStorageService.get('isLogged')) {
-            console.log(1);
             return true;
         }
-        console.log(2);
         this.router.navigate(['/login'], { queryParams: { returnUrl: returnUrl } });
         return false;
     }
