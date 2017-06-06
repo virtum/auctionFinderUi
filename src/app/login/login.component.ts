@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.guard.isLogged = <any>res;
-                    this.localStorageService.add('isLogged', true);
+                    this.localStorageService.set('isLogged', true);
                     this.router.navigateByUrl(this.returnUrl);
                 }
                 );

@@ -38,7 +38,7 @@ export class AccountComponent implements OnInit {
     logout() {
         this.logoutUser().subscribe(res => {
             this.guard.isLogged = false;
-            this.localStorageService.add('isLogged', false);
+            this.localStorageService.set('isLogged', false);
             console.log('isLogged from logout: ', this.localStorageService.get('isLogged'));
             this.router.navigate(['/home']);
         }

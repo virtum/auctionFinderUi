@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router, private http: Http, private localStorageService: LocalStorageService) {
         this.isUserLogged().subscribe(res => {
             this.isLogged = res.logged;
-            this.localStorageService.add('isLogged', this.isLogged);
+            this.localStorageService.set('isLogged', this.isLogged);
             console.log('isLogged from observable: ', this.localStorageService.get('isLogged'));
         }
         );
