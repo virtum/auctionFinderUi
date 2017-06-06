@@ -14,12 +14,14 @@ import { LocalStorageService } from 'angular-2-local-storage';
 @Injectable()
 export class AccountComponent implements OnInit {
     private accountData: String;
+    private subscriptions: any = [];
 
     constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService) { }
 
     ngOnInit() {
         this.getUserSubscriptions().subscribe(res => {
             this.accountData = res.accountData;
+            this.subscriptions = res.auctions;
         });
     }
 

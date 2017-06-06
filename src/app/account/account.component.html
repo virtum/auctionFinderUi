@@ -3,6 +3,11 @@
     <div class="row row-offcanvas row-offcanvas-right">
       <div class="col-xs-12 col-sm-9">
         Account page: {{accountData}}
+
+        <tr *ngFor='let subscription of subscriptions'>
+          <td>{{subscription}}</td>
+        </tr>
+
         <div>
           <button (click)="logout()" class="btn btn-primary">Logout</button>
         </div>
