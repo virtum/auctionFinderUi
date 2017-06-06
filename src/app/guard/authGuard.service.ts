@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
         this.isUserLogged().subscribe(res => {
             this.isLogged = res.logged;
             this.localStorageService.add('isLogged', this.isLogged);
+            console.log('isLogged from observable: ', this.localStorageService.get('isLogged'));
         }
         );
     }
@@ -24,9 +25,12 @@ export class AuthGuard implements CanActivate {
     }
 
     checkLoggedIn(returnUrl): boolean {
-        if (this.isLogged) {
+        console.log('isLogged from checkLoggedIn: ', this.localStorageService.get('isLogged'));
+        if (this.localStorageService.get('isLogged')) {
+            console.log(1);
             return true;
         }
+        console.log(2);
         this.router.navigate(['/login'], { queryParams: { returnUrl: returnUrl } });
         return false;
     }

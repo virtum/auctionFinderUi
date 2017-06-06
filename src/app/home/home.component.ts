@@ -8,7 +8,6 @@ import { FindRequestModel } from '../home/findRequestModel';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import 'rxjs/add/observable/throw';
-import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
     templateUrl: './home.component.html',
@@ -31,13 +30,7 @@ export class HomeComponent {
     valuFromLocalStorage: any;
 
     //https://stackoverflow.com/questions/42603100/installing-angular2-localstorage-in-webstorm-gives-error-regarding-typings-inst
-    public constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef,
-        private localStorageService: LocalStorageService) {
-        this.name = 'Angular-2-Local-Storage-Demo';
-        this.localStorageService.add('a', this.name);
-        //console.log(this.localStorageService.get('a'));
-        this.valuFromLocalStorage = this.localStorageService.get('a');
-        //console.log(this.localStorageService.get('a'));
+    public constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 

@@ -29,17 +29,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log(this.localStorageService.get('isLogged'));
-        console.log(this.returnUrl);
-        //console.log(this.returnUrl);
-        if ((this.localStorageService.get('isLogged'))) {
-            console.log('if');
-            this.router.navigate([this.returnUrl]);
-            //this.router.navigateByUrl(this.returnUrl);
-            console.log('kurwa');
-        }
     }
 
     login() {
@@ -48,6 +38,7 @@ export class LoginComponent implements OnInit {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.guard.isLogged = <any>res;
+                    this.localStorageService.add('isLogged', true);
                     this.router.navigateByUrl(this.returnUrl);
                 }
                 );
