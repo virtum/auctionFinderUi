@@ -38,7 +38,7 @@ import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [AuthGuard, LocalStorageService],
+  providers: [AuthGuard, LocalStorageService, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

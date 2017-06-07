@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
@@ -16,9 +17,21 @@ import { LocalStorageService } from 'angular-2-local-storage';
 @Injectable()
 export class LoginComponent implements OnInit {
     private returnUrl: string;
+    public isLogged: Subject<boolean> = new Subject<boolean>();
+
+    // get isLoggedIn() {
+    //     return this.isLogged.asObservable();
+    // }
 
     constructor(private fb: FacebookService, private http: Http, private router: Router,
         private route: ActivatedRoute, private localStorageService: LocalStorageService) {
+
+        this.isLogged.subscribe(val => {
+            console.log('login val: ', val);
+        });
+
+        //this.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
+
         fb.init({
             appId: '1722165054742491',
             xfbml: true,
@@ -40,6 +53,9 @@ export class LoginComponent implements OnInit {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.localStorageService.set('isLogged', true);
+
+                    this.isLogged.next(true);
+                    
                     this.router.navigateByUrl(this.returnUrl);
                 }
                 );
