@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthGuard } from '../guard/authGuard.service';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { LoginComponent } from '../login/login.component';
+import { AppComponent } from "../app.component";
 
 @Component({
     templateUrl: './account.component.html'
@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit {
     private accountData: String;
     private subscriptions: any = [];
 
-    constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService, private login: LoginComponent) { }
+    constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService, private app: AppComponent) { }
 
     ngOnInit() {
         this.getUserSubscriptions().subscribe(res => {
@@ -41,7 +41,9 @@ export class AccountComponent implements OnInit {
     logout() {
         this.logoutUser().subscribe(res => {
             this.localStorageService.set('isLogged', false);
-            this.login.isLogged.next(false);
+
+            this.app.isLogged.next(false);
+            
             this.router.navigate(['/home']);
         }
         );

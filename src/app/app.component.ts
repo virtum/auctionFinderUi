@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
@@ -12,21 +13,14 @@ import { LocalStorageService } from 'angular-2-local-storage';
 
 @Injectable()
 export class AppComponent {
-  private isLogged: Observable<boolean>;
+  public isLogged: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private login: LoginComponent, private localStorageService: LocalStorageService) {
-
-    this.isLogged = this.login.isLogged;
-
-    this.login.isLogged.subscribe(val => {
-      console.log('app remote val: ', val);
-    })
-
+  constructor(private localStorageService: LocalStorageService) {
     this.isLogged.subscribe(val => {
       console.log('app local val: ', val);
     })
 
-    this.login.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
+    this.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
 
   }
 }
