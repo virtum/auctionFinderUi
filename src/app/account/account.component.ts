@@ -41,9 +41,7 @@ export class AccountComponent implements OnInit {
     logout() {
         this.logoutUser().subscribe(res => {
             this.localStorageService.set('isLogged', false);
-
             this.app.isLogged.next(false);
-            
             this.router.navigate(['/home']);
         }
         );

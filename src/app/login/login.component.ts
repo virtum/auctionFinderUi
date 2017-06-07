@@ -21,12 +21,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private fb: FacebookService, private http: Http, private router: Router,
         private route: ActivatedRoute, private localStorageService: LocalStorageService, private app: AppComponent) {
-
-
-        //this.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
         this.app.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
-
-
         fb.init({
             appId: '1722165054742491',
             xfbml: true,
@@ -49,7 +44,6 @@ export class LoginComponent implements OnInit {
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.localStorageService.set('isLogged', true);
                     this.app.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
-
                     this.router.navigateByUrl(this.returnUrl);
                 }
                 );

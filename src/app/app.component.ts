@@ -16,11 +16,6 @@ export class AppComponent {
   public isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private localStorageService: LocalStorageService) {
-    this.isLogged.subscribe(val => {
-      console.log('app local val: ', val);
-    })
-
     this.isLogged.next(<boolean>this.localStorageService.get('isLogged'));
-
   }
 }
