@@ -22,12 +22,14 @@ export class AppComponent {
   }
 
   login() {
-    this.isLogged.next(true);
+    // check if loggin was success
     this.loginService.login();
+    this.isLogged.next(true);
+
   }
 
   logout() {
-    this.isLogged.next(false);
     this.logoutService.logout();
+    this.isLogged.next(false);
   }
 }
