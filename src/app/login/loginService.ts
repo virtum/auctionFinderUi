@@ -40,7 +40,7 @@ export class LoginService implements OnInit {
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.localStorageService.set('isLogged', true);
                     app.next(<boolean>this.localStorageService.get('isLogged'));
-                    //this.router.navigateByUrl(this.returnUrl);
+                    this.router.navigateByUrl('/account');
                 }
                 );
             })
