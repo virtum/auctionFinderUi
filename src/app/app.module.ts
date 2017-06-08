@@ -13,6 +13,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
+import { LoginService } from './login/loginService';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [AuthGuard, LocalStorageService, LoginComponent, AppComponent],
+  providers: [AuthGuard, LocalStorageService, LoginComponent, AppComponent, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
