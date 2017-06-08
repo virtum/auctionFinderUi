@@ -40,7 +40,7 @@ import { LogoutService } from './logout/logout.service';
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [AuthGuard, LocalStorageService, LoginComponent, LoginService, LogoutService],
+  providers: [AuthGuard, LocalStorageService, LoginComponent, LoginService, LogoutService, AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

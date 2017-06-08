@@ -4,6 +4,9 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { LocalStorageService } from 'angular-2-local-storage';
+import { AppComponent } from '../app.component';
+
 
 @Component({
     templateUrl: './account.component.html'
@@ -14,7 +17,7 @@ export class AccountComponent {
     private accountData: String;
     private subscriptions: any = [];
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private localStorage: LocalStorageService, private router: Router, private app: AppComponent) { }
 
     ngOnInit() {
         this.getUserSubscriptions().subscribe(res => {
@@ -32,7 +35,11 @@ export class AccountComponent {
                 let body = res.json();
                 return body || {};
             })
-            .catch(this.handleError);
+            .catch(err => {
+                this.app.isLogged.next(false);
+                this.router.navigateByUrl('/login');
+                return Observable.throw('');
+            });
     }
 
     private handleError(error: Response | any) {
@@ -45,6 +52,7 @@ export class AccountComponent {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
+        this.router.navigateByUrl('/login');
         return Observable.throw(errMsg);
     }
 
