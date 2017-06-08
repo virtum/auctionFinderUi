@@ -22,9 +22,7 @@ export class AppComponent {
   }
 
   login() {
-    // check if loggin was success
-    this.loginService.login();
-    this.isLogged.next(true);
+    this.loginService.login(this.isLogged);
 
   }
 

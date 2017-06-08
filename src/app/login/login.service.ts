@@ -21,12 +21,13 @@ export class LoginService {
         });
     }
 
-    login() {
+    login(isLogged: BehaviorSubject<boolean>) {
         this.fb.login()
             .then((res: LoginResponse) => {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.localStorageService.set('isLogged', true);
+                    isLogged.next(true);
                     this.router.navigateByUrl('/account');
                 }
                 );

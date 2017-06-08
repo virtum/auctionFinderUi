@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.app.isLogged.next(true);
-        this.loginService.login();
+        this.loginService.login(this.app.isLogged);
     }
 
 }
