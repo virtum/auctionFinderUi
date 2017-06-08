@@ -14,7 +14,11 @@ export class LoginService {
     private returnUrl: string;
 
     constructor(private fb: FacebookService, private http: Http, private router: Router, private localStorageService: LocalStorageService, ) {
-        fb.init({
+        this.initialFacebookService();
+    }
+
+    initialFacebookService() {
+        this.fb.init({
             appId: '1722165054742491',
             xfbml: true,
             version: 'v2.8'
