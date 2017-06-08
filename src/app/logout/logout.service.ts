@@ -12,10 +12,9 @@ export class LogoutService {
 
     constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService) { }
 
-    logout(isLogged: BehaviorSubject<boolean>) {
+    logout() {
         this.logoutUser().subscribe(res => {
             this.localStorageService.set('isLogged', false);
-            isLogged.next(false);
             this.router.navigate(['/home']);
         }
         );

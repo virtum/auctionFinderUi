@@ -9,7 +9,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { AppComponent } from "../app.component";
 
 @Injectable()
 export class LoginService implements OnInit {
@@ -32,13 +31,12 @@ export class LoginService implements OnInit {
         }
     }
 
-    login(isLogged: BehaviorSubject<boolean>) {
+    login() {
         this.fb.login()
             .then((res: LoginResponse) => {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.localStorageService.set('isLogged', true);
-                    isLogged.next(<boolean>this.localStorageService.get('isLogged'));
                     this.router.navigateByUrl('/account');
                 }
                 );

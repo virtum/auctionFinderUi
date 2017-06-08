@@ -22,12 +22,12 @@ export class AppComponent {
   }
 
   login() {
-    // usun app inject zrob nexta tutaj
-    this.loginService.login(this.isLogged);
+    this.isLogged.next(true);
+    this.loginService.login();
   }
 
   logout() {
-    // usun app inject zrob nexta tutaj
-    this.logoutService.logout(this.isLogged);
+    this.isLogged.next(false);
+    this.logoutService.logout();
   }
 }
