@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/catch';
@@ -11,24 +10,15 @@ import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 import { LocalStorageService } from 'angular-2-local-storage';
 
 @Injectable()
-export class LoginService implements OnInit {
+export class LoginService {
     private returnUrl: string;
 
-    constructor(private fb: FacebookService, private http: Http, private router: Router,
-        private route: ActivatedRoute, private localStorageService: LocalStorageService, ) {
+    constructor(private fb: FacebookService, private http: Http, private router: Router, private localStorageService: LocalStorageService, ) {
         fb.init({
             appId: '1722165054742491',
             xfbml: true,
             version: 'v2.8'
         });
-    }
-
-    ngOnInit() {
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-        if (this.localStorageService.get('isLogged') && this.returnUrl === '/') {
-            this.router.navigate(['/home']);
-        }
     }
 
     login() {
