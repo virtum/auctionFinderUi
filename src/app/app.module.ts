@@ -13,7 +13,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
-import { LoginService } from './login/loginService';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [

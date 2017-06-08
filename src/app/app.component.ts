@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { LoginService } from './login/loginService';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-root',
