@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 import { LoginService } from './login/login.service';
+import { LogoutService } from './logout/logout.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { LoginService } from './login/login.service';
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [AuthGuard, LocalStorageService, LoginComponent, AppComponent, LoginService],
+  providers: [AuthGuard, LocalStorageService, LoginComponent, AppComponent, LoginService, LogoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

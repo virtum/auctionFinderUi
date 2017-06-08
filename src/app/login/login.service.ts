@@ -17,7 +17,6 @@ export class LoginService implements OnInit {
 
     constructor(private fb: FacebookService, private http: Http, private router: Router,
         private route: ActivatedRoute, private localStorageService: LocalStorageService, ) {
-        console.log('login');
         fb.init({
             appId: '1722165054742491',
             xfbml: true,
@@ -33,13 +32,13 @@ export class LoginService implements OnInit {
         }
     }
 
-    login(app: BehaviorSubject<boolean>) {
+    login(isLogged: BehaviorSubject<boolean>) {
         this.fb.login()
             .then((res: LoginResponse) => {
                 console.log(res.authResponse.accessToken);
                 this.sendAccessToken(res.authResponse.accessToken).subscribe(res => {
                     this.localStorageService.set('isLogged', true);
-                    app.next(<boolean>this.localStorageService.get('isLogged'));
+                    isLogged.next(<boolean>this.localStorageService.get('isLogged'));
                     this.router.navigateByUrl('/account');
                 }
                 );
