@@ -6,15 +6,17 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 
 @Injectable()
 export class LogoutService {
 
-    constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService) { }
+    constructor(private http: Http, private router: Router, private localStorageService: LocalStorageService, private fb: FacebookService) { }
 
     logout() {
         this.logoutUser().subscribe(res => {
             this.localStorageService.set('isLogged', false);
+            this.fb.logout();
             this.router.navigate(['/home']);
         }
         );
