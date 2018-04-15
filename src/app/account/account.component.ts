@@ -14,16 +14,17 @@ import { AppComponent } from '../app.component';
 
 @Injectable()
 export class AccountComponent {
-    private accountData: String;
+    private subscriptionCounter: any;
     private subscriptions: any = [];
 
     constructor(private http: Http, private localStorage: LocalStorageService, private router: Router, private app: AppComponent) { }
 
     ngOnInit() {
-        this.getUserSubscriptions().subscribe(res => {
-            this.accountData = res.accountData;
-            this.subscriptions = res.auctions;
-        });
+        this.getUserSubscriptions()
+            .subscribe(res => {
+                this.subscriptionCounter = res.subscriptionCounter;
+                this.subscriptions = res.userSubscriptions;
+            });
     }
 
     getUserSubscriptions() {
