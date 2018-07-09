@@ -1,17 +1,26 @@
-<img src="assets/wallpaper5.jpg" id="bg" alt="">
 <nav class="navbar navbar-inverse py-3" style="font-size:150%">
   <div class="navbar-header">
     <a class="navbar-brand" href="home">Auction finder</a>
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-center">
-      <li class="nav-item"><a class="nav-link" [routerLink]="['/home']">Find item</a></li>
-      <li class="nav-item"><a class="nav-link" [routerLink]="['/about']">About</a></li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/home']">Find item</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/about']">About</a>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item"><a *ngIf="(isLogged | async)" class="nav-link" [routerLink]="['/account']">Account</a></li>
-      <li class="nav-item "><a *ngIf="!(isLogged | async)" class="nav-link" [routerLink]="[]" (click)="login()">Login</a></li>
-      <li class="nav-item "><a *ngIf="(isLogged | async)" class="nav-link" [routerLink]="[]" (click)="logout()">Logout</a></li>
+      <li class="nav-item">
+        <a *ngIf="(isLogged | async)" class="nav-link" [routerLink]="['/account']">Account</a>
+      </li>
+      <li class="nav-item ">
+        <a *ngIf="!(isLogged | async)" class="nav-link" [routerLink]="[]" (click)="login()">Login</a>
+      </li>
+      <li class="nav-item ">
+        <a *ngIf="(isLogged | async)" class="nav-link" [routerLink]="[]" (click)="logout()">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>
