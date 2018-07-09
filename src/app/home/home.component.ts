@@ -25,22 +25,13 @@ export class HomeComponent {
 
     public isRequestModalShown: boolean = false;
 
-    name: any;
-    user: any;
-    valuFromLocalStorage: any;
-
-    //https://stackoverflow.com/questions/42603100/installing-angular2-localstorage-in-webstorm-gives-error-regarding-typings-inst
-    public constructor(private http: Http, public toastr: ToastrService, vcr: ViewContainerRef) {
-        // this.toastr.setRootViewContainerRef(vcr);
-    }
+    public constructor(private http: Http, public toastr: ToastrService) { }
 
     showSuccess() {
-        // this.toastr.success('Subskrypcja została stworzona!', 'Sukces!', { toastLife: 4000, showCloseButton: true });
         this.toastr.success('Subskrypcja została stworzona!', 'Sukces!', { timeOut: 4000 });
     }
 
     showError() {
-        //this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!', { toastLife: 4000, showCloseButton: true });
         this.toastr.error('Subskrypcja nie została dodana, spróbuj ponownie!', 'Oops!', { timeOut: 4000 });
     }
 
