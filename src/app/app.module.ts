@@ -10,11 +10,12 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guard/authGuard.service';
 import { AccountComponent } from "./account/account.component"
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 import { LoginService } from './login/login.service';
 import { LogoutService } from './logout/logout.service';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,14 @@ import { LogoutService } from './logout/logout.service';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     LocalStorageModule.withConfig({ storageType: 'localStorage' }),
     FacebookModule.forRoot(),
     ModalModule.forRoot(),
-    ToastModule.forRoot(),
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
