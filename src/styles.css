@@ -16,3 +16,7 @@
 .panel-body{
     display: none;
 }
+
+.sortable td {
+    cursor: pointer;
+}

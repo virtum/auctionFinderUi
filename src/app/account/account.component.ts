@@ -43,6 +43,10 @@ export class AccountComponent {
             });
     }
 
+    chooseSubscription() {
+        console.log("to be done")
+    }
+
     private handleError(error: Response | any) {
         let errMsg: string;
         if (error instanceof Response) {
