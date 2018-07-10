@@ -68,6 +68,13 @@ a:focus {
     border-bottom: 1px solid #47748b;
 }
 
+#sidebar ul.components1 {
+    border-top: 1px solid #47748b;
+    position: fixed;
+    width: 250px;
+    bottom: 10px;
+}
+
 #sidebar ul p {
     color: #fff;
     padding: 10px;
