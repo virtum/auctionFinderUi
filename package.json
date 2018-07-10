@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "6.0.0",
     "@angular/router": "6.0.0",
     "angular-2-local-storage": "1.0.1",
+    "angular2-collapsible": "0.0.53",
     "core-js": "^2.4.1",
     "ngx-bootstrap": "^3.0.1",
     "ngx-facebook": "^2.4.0",

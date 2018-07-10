@@ -16,6 +16,7 @@ import { LogoutService } from './logout/logout.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CollapsibleModule } from 'angular2-collapsible';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    CollapsibleModule,
     LocalStorageModule.withConfig({ storageType: 'localStorage' }),
     FacebookModule.forRoot(),
     ModalModule.forRoot(),

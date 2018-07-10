@@ -6,22 +6,32 @@
         <div class="pull-right">
         </div>
       </div>
-      <table class="table table-hover sortable">
+      <collapsible-table class="table table-hover" [type]="expanded" bordered>
         <thead>
-          <tr>
+          <collapsible-table-row>
             <th>Nazwa:</th>
             <th>Liczba znalezionych aukcji:</th>
             <th>Data utworzenia:</th>
-          </tr>
+          </collapsible-table-row>
         </thead>
-        <tbody>
-          <tr (click)="chooseSubscription()" *ngFor='let subscription of subscriptions'>
+
+        <tbody *ngFor='let subscription of subscriptions'>
+          <collapsible-table-row [detail]="details">
             <td>{{subscription.itemName}}</td>
             <td>{{subscription.numberOfFoundItems}}</td>
             <td>{{subscription.creationDate}}</td>
-          </tr>
+          </collapsible-table-row>
+          <collapsible-table-row-detail #details>
+            <p>Row Detail</p>
+            <p>Row Detail</p>
+            <p>Row Detail</p>
+            <p>Row Detail</p>
+            <p>Row Detail</p>
+          </collapsible-table-row-detail>
+
         </tbody>
-      </table>
+      </collapsible-table>
     </div>
   </div>
+
 </main>
