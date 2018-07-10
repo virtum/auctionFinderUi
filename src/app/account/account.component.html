@@ -1,25 +1,27 @@
 <main>
   <div class="container">
-    <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-xs-12 col-sm-12" style="font-size : 20px;color:#d9d9d9">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Nazwa:</th>
-              <th>Liczba znalezionych aukcji:</th>
-              <th>Data utworzenia:</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr *ngFor='let subscription of subscriptions'>
-              <td>{{subscription.itemName}}</td>
-              <td>{{subscription.numberOfFoundItems}}</td>
-              <td>{{subscription.creationDate}}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="text-align:center">Subskrypcje</h3>
+        <div class="pull-right">
+        </div>
       </div>
+      <table class="table table-hover sortable">
+        <thead>
+          <tr>
+            <th>Nazwa:</th>
+            <th>Liczba znalezionych aukcji:</th>
+            <th>Data utworzenia:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr (click)="chooseSubscription()" *ngFor='let subscription of subscriptions'>
+            <td>{{subscription.itemName}}</td>
+            <td>{{subscription.numberOfFoundItems}}</td>
+            <td>{{subscription.creationDate}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </main>
