@@ -68,9 +68,9 @@ a:focus {
     border-bottom: 1px solid #47748b;
 }
 
-#sidebar ul.components1 {
+#sidebar ul.componentsFooter {
     border-top: 1px solid #47748b;
-    position: fixed;
+    position: absolute;
     width: 250px;
     bottom: 10px;
 }
